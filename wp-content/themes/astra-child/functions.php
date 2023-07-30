@@ -2,7 +2,11 @@
 add_action( 'wp_enqueue_scripts', 'astra_child_enqueue_styles' );
 function astra_child_enqueue_styles() {
  
+	// get_template_directory_uri() is pointing to the parent theme folder
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+
+	// array( 'parent-style' ) tells. The child theme relies on the parent style
+	// so make sure enqueue parent style's first
     wp_enqueue_style( 'child-style',
         get_stylesheet_directory_uri() . '/style.css',
         array( 'parent-style' )
@@ -28,12 +32,13 @@ function lil_define_block() {
 	}
 }
 
-define( 'LIL_PATH', trailingslashit( get_stylesheet_directory() ) );
-function lil_render_fun_facts_block( $block ) {
+// define( 'LIL_PATH', trailingslashit( get_stylesheet_directory() ) );
+// function lil_render_fun_facts_block( $block ) {
 	
-	// convert name ("acf/fun-facts") into path friendly slug ("fun-facts")
-	$slug = str_replace( 'acf/', '', $block['name'] );
-	if( file_exists( LIL_PATH . "template-parts/block/content-{$slug}.php" ) ) {
-		include( LIL_PATH . "template-parts/block/content-{$slug}.php" );
-	}
-}
+// 	// convert name ("acf/fun-facts") into path friendly slug ("fun-facts")
+// 	$slug = str_replace( 'acf/', '', $block['name'] );
+// 	if( file_exists( LIL_PATH . "template-parts/block/content-{$slug}.php" ) ) {
+// 		include( LIL_PATH . "template-parts/block/content-{$slug}.php" );
+// 	}
+// }
+

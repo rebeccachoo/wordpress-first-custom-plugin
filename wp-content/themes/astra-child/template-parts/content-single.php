@@ -75,6 +75,7 @@
 				);
 			}
 
+			// remove all conflicts
 			wp_reset_postdata();
 			echo '</ul>';
 		}
